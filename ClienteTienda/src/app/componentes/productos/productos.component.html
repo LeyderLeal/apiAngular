@@ -1,0 +1,72 @@
+<div class="container">
+    <br>
+    <br>
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <a href="/producto">
+        <button class="btn btn-danger rounded-pill mb-2 fw-bold" style="letter-spacing: 2px;">AGREGAR PRODUCTO</button>
+        </a>
+    </div>
+    <br>
+    <br>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-9">
+            <div class="text-center">
+                <table id="tblProductos" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="7" class="text-white text-center bg-danger">PRODUCTOS</th>
+                        </tr>
+                        <tr class="bg-white">
+                            <th>CÓDIGO</th>
+                            <th>NOMBRE</th>
+                            <th>PRECIO</th>
+                            <th>CATEGORIA</th>
+                            <th>IMAGEN</th>
+                            <th>ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr id="fila" *ngFor = "let producto of listaProductos">
+                            <td class = "text-center">{{producto.proCodigo}}</td>
+                            <td>{{producto.proNombre}}</td>
+                            <td class = "text-end">${{producto.proPrecio | currency: "COP "}}</td>
+                            <ng-container *ngFor="let categoria of listaCategorias">
+                                <td *ngIf="categoria.id == producto.proCategoria">{{categoria.catNombre}}</td>
+                            </ng-container>
+                            <td class="text-center">
+                                <img width="50" src="{{producto.proFoto}}">
+                            </td>
+                            <td class="text-center" style="font-size: 4vh;">
+                                <a href="/editarProducto/{{producto.id}}"><i class="fas fa-edit text-success"></i></a>
+                                <i (click) = "abrirModalEliminar(producto.id)" class="fas fa-trash text-danger"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalEliminar" [ngStyle]="{'display':display}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Encabezado-->
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="model-title">Eliminar Producto</h4>
+                    <button type="button" class="text-white close" data-dismiss="modal" (click)="cerrarModal()">&times;</button>
+                </div>
+                <!-- Modal Contenido -->
+                <div class="modal-body">
+                    ¿Está seguro de Eliminar el Producto?
+                </div>
+                <!-- Modal Pie Página -->
+                <div class="modal-footer">
+                    <a href="" id="rutaEliminar">
+                        <button type="button" class="btn btn-success" id="btnEliminar" (click)="eliminarProducto()">SI</button>
+                    </a>
+                    <button type="button" class="btn btn-danger" id="btnCancelarModal" (click)="cerrarModal()" data-dismiss="modal">NO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

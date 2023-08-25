@@ -1,0 +1,61 @@
+<div class="container h-100 frmProducto">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <h3 class="mb-5 fw-bold">REGISTRAR PRODUCTO</h3>
+                    <hr>
+                    <form [formGroup]="frmProducto" (ngSubmit)="agregarProducto(frmProducto.value)" enctype="multipart/form-data" class="was-validated">
+
+                        <div class="form-floating mb-4">
+                            <input type="number" formControlName="txtCodigo" id="txtCodigo" class="form-control" 
+                                style="border-radius: 12px;" value="" required>
+                            <label for="txtCodigo">Código del producto:</label>
+                        </div>  
+                        
+                        <div class="form-floating mb-4">
+                            <input type="text" formControlName="txtNombre" id="txtNombre" class="form-control" 
+                            style="border-radius: 12px;" value="" required>
+                            <label for="txtNombre">Nombre del producto:</label>
+                        </div>  
+                        
+                        <div class="form-floating mb-4">
+                            <input type="number" formControlName="txtPrecio" id="txtPrecio" class="form-control"
+                            style="border-radius: 12px;" value="" required>
+                            <label for="txtPrecio">Precio del producto:</label>
+                        </div>  
+                        
+                        <div class="form-floating mb-4">
+                            <select formControlName="cbCategoria" class="form-select" id="cbCategoria" style="border-radius: 12px;" required>
+                                <option value="">Seleccione Categoria:</option>
+                                <option [value]="categoria.id" *ngFor="let categoria of listaCategorias">
+                                    {{categoria.catNombre}}
+                                </option>
+                            </select>
+                            <label for="cbCategoria">Categoria:</label>
+                        </div>
+                        
+                        <div class="form-floating mb-4">
+                            <input type="file" formControlName="fileFoto" id="fileFoto" 
+                            class="form-control" (change)="onFileSelect($event)" style="border-radius: 12px; padding-top: 30px;">
+                            <label for="fileFoto">Foto (jpg):</label> <br>
+                        </div>
+                        <div class="text-center">
+                            <img id="imagenProducto" [src]="rutaFoto" alt="" width="100" height="100">
+                        </div>
+                        
+                        <hr>
+                        
+                        <div class="mt-5">
+                            <button class="btn btn-success rounded-pill mb-2 fw-bold" style="letter-spacing: 2px;">REGISTRAR</button>
+                            <a href="/productos">
+                                <button type="button" class="btn btn-warning ml-2">Cancelar</button>
+                            </a>
+                        </div>
+                    </form>
+                    <div class="text-center">{{mensaje}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

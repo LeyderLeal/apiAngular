@@ -1,0 +1,23 @@
+<div class="container h-100 frmCategoria">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <h3 class="mb-5 fw-bold">AGREGAR CATEGORIA</h3>
+                    <hr>
+                    <form [formGroup]="frmCategoria" (ngSubmit)="agregarCategoria(frmCategoria.value)">
+                        <div class="form-floating mb-4">
+                            <input type="text" formControlName="txtNombre" id="txtNombre" class="form-control" required style="border-radius: 12px;">
+                            <label for="txtNombre">Nombre de la Categoria</label>
+                        </div>  
+                        <hr>
+                        <div class="mt-5">
+                            <button class="btn btn-danger rounded-pill mb-2 fw-bold" style="letter-spacing: 2px;">AGREGAR</button>
+                        </div>
+                    </form>
+                    <div class="text-center font-weight-bold">{{mensaje}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
